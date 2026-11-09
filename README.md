@@ -6,6 +6,8 @@
 
 ## NAS 安装
 
+[当前安装包 0.1.0.0012](https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0012) · [安装指南](gateway/INSTALL.zh-CN.md) · [Compose 模板](gateway/docker-compose.yaml)
+
 从 Releases 下载当前的 Linux amd64 Gateway Docker ZIP，导入其中唯一的镜像，填写已有 Matrix 地址和账号，将原密码写入私有密码文件，然后启动 Compose。网页由本站提供，无需在 NAS 下载模型或编译。
 
 在 `workstation` 容器终端执行 `node --import tsx scripts/setup-gateway.ts --invite`，打开链接或扫码，核对六位码后确认一次并等待同步。AI 官方授权目前仍使用容器终端入口，详见安装包内说明。

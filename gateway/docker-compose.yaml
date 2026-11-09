@@ -1,0 +1,72 @@
+# Metapp Gateway only. Frontend: https://escapingbug.github.io/metapp-release/
+# Fill your EXISTING Matrix server/account below. Password goes into matrix-password.txt.
+x-metapp-settings:
+  matrix_url: &matrix_url "https://matrix.example.com"
+  matrix_user: &matrix_user ""
+  kimi_model: &kimi_model ""
+
+x-metapp-logging: &a1
+  driver: local
+  options:
+    max-size: 10m
+    max-file: "3"
+services:
+  initialize:
+    image: metapp/ugreen-workstation:0.1.0-12-amd64
+    user: 0:0
+    command:
+      - node
+      - /opt/metapp/bootstrap.mjs
+    logging: *a1
+    restart: no
+    environment:
+      STATE_PATH: /metapp/data
+      FILES_PATH: /metapp/files
+      KIMI_MODEL: *kimi_model
+    volumes:
+      - ./data:/state
+    security_opt:
+      - no-new-privileges:true
+    pull_policy: never
+  workstation:
+    image: metapp/ugreen-workstation:0.1.0-12-amd64
+    init: true
+    logging: *a1
+    restart: unless-stopped
+    environment:
+      METAPP_HOME: /data/workstation
+      METAPP_MATRIX_URL: *matrix_url
+      METAPP_MATRIX_USER: *matrix_user
+      METAPP_MATRIX_PASSWORD_FILE: /run/secrets/matrix_password
+      METAPP_OFFICE_DIRECTORIES: '["/files"]'
+      HAS_MODEL_PATH: /opt/metapp/model.gguf
+      HAS_ENDPOINT: http://127.0.0.1:18080/v1/chat/completions
+      METAPP_HAS_THREADS: "2"
+      METAPP_ACP_AGENT: kimi
+      METAPP_KIMI_MODEL: *kimi_model
+    volumes:
+      - ./data/workstation:/data/workstation
+      - ./files:/files
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      initialize:
+        condition: service_completed_successfully
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://127.0.0.1:8798/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))
+      interval: 60s
+      start_interval: 5s
+      timeout: 5s
+      start_period: 120s
+    pull_policy: never
+    secrets:
+      - matrix_password
+secrets:
+  matrix_password:
+    file: ./matrix-password.txt

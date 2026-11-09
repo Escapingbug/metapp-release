@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0.0012",
+  "architecture": "amd64",
+  "frontend": "https://escapingbug.github.io/metapp-release/",
+  "sourceRevision": "3c476942595721eb352baff891544467e5f14abb",
+  "gatewayImage": "metapp/ugreen-workstation:0.1.0-12-amd64",
+  "release": "https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0012",
+  "dockerZip": "https://github.com/Escapingbug/metapp-release/releases/download/metapp-nas-gateway-v0.1.0.0012/metapp-nas-gateway-0.1.0.0012-amd64.zip",
+  "dockerZipSha256": "d1557be6c44d35bbcc5ec8bb8e93d3cfd232bad5fb4561acdfc11e30b03f0b49",
+  "shape": "Static frontend on Pages; NAS Gateway with no public ports and preset frontend URL; user supplies existing Matrix account."
+}
