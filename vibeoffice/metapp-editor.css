@@ -1,0 +1,65 @@
+/* Metapp's palette on the upstream Paper look. Workbook content keeps its own formatting. */
+:root[data-look="paper"] {
+  --theme-color: #f6f8f7;
+  --ui-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --p-paper: #f6f8f7;
+  --p-paper-2: #eef3f0;
+  --p-line: #e1e8e4;
+  --p-line-strong: #c7d6ce;
+  --p-accent: #16624c;
+  --p-accent-ink: #12553f;
+  --p-accent-soft: #e9f3ed;
+  --p-accent-mid: #cde3d6;
+  --ink: #263d36;
+  --ink-2: #30483d;
+  --ink-3: #3c5447;
+  --ink-4: #4c6356;
+  --ink-5: #5e7367;
+  --ink-key: #263d36;
+  --muted: #73837d;
+  --hint-ink: #73837d;
+  --head-ink: #73837d;
+  --key-ink: #73837d;
+  --pane-ink: #3c5447;
+  --canvas: #e8eeea;
+  --work: #e8eeea;
+  --dlg-ink: #263d36;
+  --hdr-ink: #5e7367;
+  --cell-sel: rgba(22, 98, 76, .12);
+  --cell-sel-border: #16624c;
+  --rb-tab-ink: #4c6356;
+  --rb-label-ink: #73837d;
+  --brand-ink: #263d36;
+}
+
+/* Give the formula controls room without reducing the sheet to a full ribbon layout. */
+[data-look="paper"] .fbar {
+  min-height: 34px;
+  align-items: center;
+  padding: 4px 8px;
+}
+[data-look="paper"] .namebox {
+  height: 26px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+[data-look="paper"] .namebox input {
+  height: 24px;
+  padding: 0 7px;
+  font: 12px/24px var(--ui-font);
+}
+[data-look="paper"] .fb-btns button {
+  height: 26px;
+  border-radius: 6px;
+}
+[data-look="paper"] .fb-input {
+  height: 26px;
+  min-height: 26px;
+  padding: 5px 7px;
+  border-radius: 6px;
+}
+[data-look="paper"] .fb-input:focus-visible,
+[data-look="paper"] .namebox:focus-within {
+  border-color: var(--p-accent);
+  box-shadow: 0 0 0 2px var(--p-accent-soft);
+}

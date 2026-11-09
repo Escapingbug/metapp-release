@@ -1,0 +1,5 @@
+/* Preserve the grid, formula bar, sheet tabs and normal workbook rendering. */
+.cmdbars,.ribbon,.rb,.taskpane,#drawrow,.fb-btns,#namebox-dd{display:none!important}
+#fbinput[readonly]{cursor:text;background:#fafcfb}
+#glayer{pointer-events:none}
+.tabs .tab-add{display:none!important}
