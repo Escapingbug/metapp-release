@@ -12,6 +12,14 @@
 
 在 `workstation` 容器终端执行 `node --import tsx scripts/setup-gateway.ts --invite`，打开链接或扫码，核对六位码后确认一次并等待同步。AI 官方授权目前仍使用容器终端入口，详见安装包内说明。
 
+## 浏览器连接更新
+
+Metapp 现在独立保存连接、设备身份和本地数据，可与同一域名下的
+Malink 网页同时使用。首次打开新版 Metapp，请使用 NAS Gateway
+生成的新邀请连接一次；之后会恢复 Metapp 自己的连接。
+旧共享登录保持原样，不自动复制或清除，Malink 无需退出登录。
+现有 NAS Gateway 和 APK 不需要重新安装。
+
 ## 发布来源
 
 当前来源与构建版本记录在 `deployment.json`。此分支根目录是完整静态构建产物；GitHub Pages 从 `main` 的根目录发布，`.nojekyll` 保留编辑器与 WASM 资源路径。
