@@ -1,0 +1,48 @@
+{
+  "version": "0.1.0.0016",
+  "runtimeSourceRevision": "6c6033f775752fc472458d435bf448fa898df16b",
+  "date": "2026-11-10",
+  "classification": "Implementation integration, not a browser/live Matrix/NAS journey",
+  "implementationChecks": {
+    "sdkSupervisor": 54,
+    "signedArchiveAndProcess": 6,
+    "sharedSoftwareAndProtocol": 9,
+    "metappClientGatewayPackaging": 45,
+    "linuxOfficeDirectorySave": 19,
+    "officeAssetRootOverride": 4
+  },
+  "container": {
+    "passed": true,
+    "scope": "Linux container implementation integration; raw Matrix/publisher boundaries",
+    "directory": "/tmp/metapp-container-update-U2GcGD",
+    "buildId": "test-gateway-2",
+    "identityPreserved": true,
+    "matrixCommands": true,
+    "officeReadableAfterRestart": true,
+    "updateWithoutImageReplacement": true,
+    "uid": 1000,
+    "privileged": false,
+    "capabilitiesDropped": "ALL",
+    "noNewPrivileges": true,
+    "transportBoundary": "raw Matrix HTTP fixture using the actual shipping SDK and Rust crypto",
+    "publisherBoundary": "local HTTPS with a temporary test signing key",
+    "programArchives": "same production Linux program bytes, independently signed as test-gateway-1/test-gateway-2",
+    "identityPreservedByteForByte": true,
+    "priorDeviceAuthorizedAfterColdStart": true,
+    "newProgramReadsOriginalWorkbookByteForByte": true,
+    "hostSelfUpdate": true,
+    "browser": false,
+    "liveMatrix": false,
+    "nasHardware": false
+  },
+  "buildDependencyCache": {
+    "image": "metapp/ugreen-base@sha256:8b181f145fa40f025bcb42bfbd8639a03185a9c0a580d4b5e02193f02c651f54",
+    "lockfileSha256": "7d11614982d7cc9d7995a507e8360d951face49627d0ced1d7995db5df539f2a",
+    "source": "complete source COPY; all locked third-party dependencies unchanged"
+  },
+  "limitations": [
+    "No real NAS, browser, existing user Matrix or Android journey executed.",
+    "macOS directory watcher regression remains failing; the target Linux counterpart passes.",
+    "Future base-system or model-runtime changes may require a new container image."
+  ]
+}

@@ -12,7 +12,7 @@ x-metapp-logging: &a1
     max-file: "3"
 services:
   initialize:
-    image: metapp/ugreen-workstation:0.1.0-12-amd64
+    image: metapp/ugreen-workstation:0.1.0-16-amd64
     user: 0:0
     command:
       - node
@@ -29,12 +29,13 @@ services:
       - no-new-privileges:true
     pull_policy: never
   workstation:
-    image: metapp/ugreen-workstation:0.1.0-12-amd64
+    image: metapp/ugreen-workstation:0.1.0-16-amd64
     init: true
     logging: *a1
     restart: unless-stopped
     environment:
       METAPP_HOME: /data/workstation
+      METAPP_GATEWAY_INSTALL_ROOT: /data/gateway-runtime
       METAPP_MATRIX_URL: *matrix_url
       METAPP_MATRIX_USER: *matrix_user
       METAPP_MATRIX_PASSWORD_FILE: /run/secrets/matrix_password
@@ -45,7 +46,7 @@ services:
       METAPP_ACP_AGENT: kimi
       METAPP_KIMI_MODEL: *kimi_model
     volumes:
-      - ./data/workstation:/data/workstation
+      - ./data:/data
       - ./files:/files
     cap_drop:
       - ALL

@@ -1,0 +1,1 @@
+{"version":1,"algorithm":"ES256","keyId":"cLgwKw8XnJEhmemA2YomK9GYsyrug-RTw3n03aNNCMY","publicKey":{"kty":"EC","crv":"P-256","x":"7Gh__4_PGOFEUedwHbe8O2OfAgFFA7udSz62MoGzulY","y":"PH1v3X3MzwTRRZKFO5mZi0SL1NyQpGtb8NcPFzRIqDU","ext":true,"key_ops":["verify"]}}

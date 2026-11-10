@@ -1,14 +1,17 @@
 {
-  "version": "0.1.0.0012",
+  "version": "0.1.0.0016",
   "architecture": "amd64",
   "frontend": "https://escapingbug.github.io/metapp-release/",
-  "sourceRevision": "3c476942595721eb352baff891544467e5f14abb",
-  "gatewayImage": "metapp/ugreen-workstation:0.1.0-12-amd64",
-  "release": "https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0012",
-  "dockerZip": "https://github.com/Escapingbug/metapp-release/releases/download/metapp-nas-gateway-v0.1.0.0012/metapp-nas-gateway-0.1.0.0012-amd64.zip",
-  "dockerZipSha256": "d1557be6c44d35bbcc5ec8bb8e93d3cfd232bad5fb4561acdfc11e30b03f0b49",
+  "sourceRevision": "6c6033f775752fc472458d435bf448fa898df16b",
+  "gatewayImage": "metapp/ugreen-workstation:0.1.0-16-amd64",
+  "release": "https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0016",
+  "dockerZip": "https://github.com/Escapingbug/metapp-release/releases/download/metapp-nas-gateway-v0.1.0.0016/metapp-nas-gateway-0.1.0.0016-amd64.zip",
+  "dockerZipSha256": "c7b43cffcd97c71c47d7aa5968b52cc789518f52e9f9c8ed83e6c19f2ee765c3",
   "shape": "Static frontend on Pages; NAS Gateway with no public ports and preset frontend URL; user supplies existing Matrix account.",
-  "frontendSourceRevision": "c09986c598be0f256dcb196103effd3d00d8e46b",
-  "frontendBuildVersion": "20261110.035613-c09986c",
-  "browserApplicationId": "metapp"
+  "frontendSourceRevision": "8f18588240b45da0576665f1a1a1cba3435baea2",
+  "frontendBuildVersion": "20261110.074914-8f18588",
+  "browserApplicationId": "metapp",
+  "gatewayProgramSha256": "edb053e13a39771d7ad87fce06f8a7200320b5f065b12809e4c2f258183e3273",
+  "onlineUpdates": true,
+  "updateChannel": "https://escapingbug.github.io/metapp-release/gateway-agent-updates/channels/stable.json"
 }
