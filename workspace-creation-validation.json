@@ -1,0 +1,36 @@
+{
+  "sourceRevision": "87811c6ff9f7486bb3f3046a41c522c86a22d7b6",
+  "buildVersion": "20261111.125140-87811c6",
+  "unitChecks": 22,
+  "clientTypes": "passed",
+  "staticBuildAndPwa": "passed",
+  "ui": {
+    "passed": true,
+    "scope": "Real Vue/Edge rendering with a controlled SDK boundary; no Matrix, NAS or cloud calls",
+    "checks": [
+      "empty name creates a default workspace; pending progress prevents duplicate submission and confirmed success enters it",
+      "visible failure preserves form; retry after authoritative rejection uses a new ID; late confirmation reopens the original attempt without another command",
+      "existing directory creation works with an optional name and the dialog fits a 390px screen"
+    ]
+  },
+  "integration": {
+    "passed": true,
+    "scope": "Implementation integration; raw Matrix HTTP fixture, production Node SDK/client adapter/Gateway/disk; no browser, live Matrix, NAS or AI account",
+    "checks": [
+      "empty first install creates a default-named workspace",
+      "confirmed workspace exposes empty file directory without AI login",
+      "same attempt reopens one workspace without duplicate creation",
+      "existing authorized directory binds with a distinct default display name"
+    ],
+    "progress": [
+      "正在提交创建请求…",
+      "工作区已创建，正在载入资料…"
+    ]
+  },
+  "notExecuted": [
+    "User NAS hardware",
+    "User Matrix service",
+    "Android application",
+    "Cloud AI login"
+  ]
+}
