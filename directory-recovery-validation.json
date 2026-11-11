@@ -1,0 +1,17 @@
+{
+  "sourceRevision": "809b26e25c388de2396c3c6adc96da187a3bd3ef",
+  "buildVersion": "20261111.152900-809b26e",
+  "sdkPackagesSource": "2970ea35327758b0c0b4b123c882e305981eb365",
+  "sdkImplementationSecurityChecks": 16,
+  "metappClientRegressionChecks": 22,
+  "headlessBusiness": "passed: own SDK/Rust/disk cold recovery and original recorded ACP continuation; historical production publisher, raw Matrix HTTP boundary only",
+  "packagedGatewayFirstWorkspaceIntegration": "passed",
+  "typesAndBuilds": "SDK/app/headless/shared UI/Metapp client/Gateway/static PWA passed",
+  "notExecuted": [
+    "User NAS hardware",
+    "Live browser",
+    "Android",
+    "Cloud AI login"
+  ],
+  "gatewayImageReplacementRequiredForWebRecovery": false
+}
