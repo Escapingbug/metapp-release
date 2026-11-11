@@ -14,6 +14,8 @@
 
 ## Gateway 后续更新
 
+当前在线程序为 [0.1.0.0017](https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0017)，修复同一 Gateway 目录版本被并发重复签发的问题。已安装 0.1.0.0016 Docker 的设备可直接在线更新，无需上传新镜像；首次安装仍使用上面的 0.1.0.0016 Docker ZIP。
+
 首装新版后，在 Metapp 设置的设备软件更新入口检查、准备并确认安装。后续常规 Gateway、SDK 和 Office 后台更新不需要重新上传 Docker 镜像，不需要 AI 账号。保留整个 `data` 和 `files` 目录；系统库或模型运行环境的重大变更仍可能要求更新基础镜像。
 
 ## 浏览器连接更新

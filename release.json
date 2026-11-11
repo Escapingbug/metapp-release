@@ -13,5 +13,9 @@
   "browserApplicationId": "metapp",
   "gatewayProgramSha256": "edb053e13a39771d7ad87fce06f8a7200320b5f065b12809e4c2f258183e3273",
   "onlineUpdates": true,
-  "updateChannel": "https://escapingbug.github.io/metapp-release/gateway-agent-updates/channels/stable.json"
+  "updateChannel": "https://escapingbug.github.io/metapp-release/gateway-agent-updates/channels/stable.json",
+  "onlineProgramVersion": "0.1.0.0017-amd64",
+  "onlineProgramRelease": "https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0017",
+  "onlineProgramSourceRevision": "bebd8d1dae403c3d800bea12998c138a9ff9d9c0",
+  "onlineProgramSha256": "8ebbe60cec2a889fc07cdd6c6955d538b73ba2041d5a350afd0e198e64f7ae63"
 }
