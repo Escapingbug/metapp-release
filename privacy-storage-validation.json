@@ -1,0 +1,67 @@
+{
+  "releaseId": "metapp-gateway-0.1.0.0019-amd64",
+  "sourceRevision": "b1123706bcc9e5f0120e88c35fa5ad7eaef61897",
+  "programArtifact": {
+    "format": "tar.gz",
+    "sha256": "c0811813a5910b40d29a270764914cccd2da4c863905e730a374c0e1d803b21b",
+    "bytes": 272787129,
+    "architecture": "x64",
+    "hostApiVersion": 1
+  },
+  "programOnly": true,
+  "initialDockerVersion": "0.1.0.0016",
+  "officeFilesStateVersion": 2,
+  "backendImplementationTests": 65,
+  "clientImplementationTests": 50,
+  "affectedBoundaryRerunTests": 28,
+  "finalUploadPermissionChecks": 3,
+  "fixedLibraryIntegration": {
+    "passed": true,
+    "scope": "Implementation integration; raw Matrix HTTP + HaS HTTP fixtures, production Node SDK/client adapter/Gateway/Rust/own disk cold reconstruction; no browser, live Matrix, NAS, ViewProtocol or AI account",
+    "checks": [
+      "fresh installation provisions one fixed library in the configured directory",
+      "new project creation is refused",
+      "library settings use signed SDK commands and verified shared state",
+      "upload creates no formal document or NAS file before confirmation, including after cold reopen",
+      "confirmation saves exact reviewed bytes and discard leaves the library unchanged",
+      "original and sanitized files remain available for comparison",
+      "text preview and restoration use the same private mapping",
+      "same paired device cold-opens Office without selecting a chat and retains confirmed revision and global policy"
+    ]
+  },
+  "linuxProgramArchiveCheck": {
+    "passed": true,
+    "scope": "Actual signed archive in existing version16 Linux Docker image; synthetic Office data, no network/Matrix/browser/NAS/model",
+    "architecture": "x64",
+    "uid": 1000,
+    "capabilities": "none",
+    "noNewPrivileges": true,
+    "unconfirmedUploadHasNoFormalDocumentOrFile": true,
+    "exactReviewedBytesSavedWithoutResanitization": true,
+    "manualEditWaitsForConfirmation": true,
+    "discardPreservesCurrentFile": true,
+    "onlySanitizedWorkbookBytesOnDisk": true,
+    "gatewayRestoresOriginalInMemory": true,
+    "globalAgentDirectMode": true,
+    "recycleRestore": true,
+    "coldProcessPreservesSanitizedVersion": true
+  },
+  "notExecuted": [
+    "User NAS hardware/update transaction",
+    "Live browser",
+    "Android",
+    "User Matrix server",
+    "Cloud AI account",
+    "Full product ViewProtocol journey"
+  ],
+  "storageBoundary": {
+    "matrixOriginalAllowed": true,
+    "mappingEncryptedAtRest": true,
+    "gatewaySanitizesAndRestores": true,
+    "nasManagedWorkbookBytes": "sanitized only",
+    "beforePrivacyConfirmation": "sanitized candidate only; no formal document/version or files export",
+    "externalFiles": "never silently imported, deleted or overwritten",
+    "legacyExports": "rewrite only matching managed exports and recycle files; external changes reported",
+    "historicalBackupsAndMatrixMedia": "not deleted"
+  }
+}
