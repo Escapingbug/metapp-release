@@ -1,0 +1,17 @@
+{
+  "sourceRevision": "7e7e97a53508a2334b39cf2f475d581ef0a14523",
+  "buildVersion": "20261112.031519-7e7e97a",
+  "appPackageSourceRevision": "cce122ad2f0a25096589f6761c0603b8589b1df6",
+  "beforeFix": "Desktop and compact pre-invitation renderer both fail: existing updater has no rendered version or check action; generic protected-controller placeholder remains.",
+  "sharedApplicationChecks": 28,
+  "metappClientRegressionChecks": 39,
+  "buildAndTypes": "Shared app build/declarations/types, shared UI contracts, Metapp types and static PWA passed.",
+  "mechanism": "Present existing local PWA update state while Workspace software controller is absent; existing semantic check action and original updater activation; no login or new owner.",
+  "gatewayProgramUpdateRequired": false,
+  "notExecuted": [
+    "Live browser or Service Worker/document navigation",
+    "Android",
+    "User NAS",
+    "Live user Matrix"
+  ]
+}

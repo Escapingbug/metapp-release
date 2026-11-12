@@ -20,6 +20,8 @@
 
 ## 浏览器连接更新
 
+网页更新不需要先接受邀请。在 **Settings → App & help** 的 Metapp 卡片可查看当前网页版本并点击 **Check for updates**；等待应用的新版可点击 **Apply web update**。首次未配对时同样可用。
+
 Metapp 现在独立保存连接、设备身份和本地数据，可与同一域名下的
 Malink 网页同时使用。首次打开新版 Metapp，请使用 NAS Gateway
 生成的新邀请连接一次；之后会恢复 Metapp 自己的连接。
