@@ -1,0 +1,28 @@
+{
+  "sourceRevision": "5c90a3a639fc989a07ee7bb85375e5b50b8db33f",
+  "buildVersion": "20261112.035331-5c90a3a",
+  "appSourceRevision": "0b300049b64e7c470bd95740a70174385f8d03f7",
+  "originalFailures": [
+    "Versioned worker registration URLs differ across page builds",
+    "Controller takeover reloads the published current build",
+    "A navigation returning the same build automatically starts another navigation"
+  ],
+  "checks": {
+    "updaterImplementation": 15,
+    "sharedAppContracts": 8,
+    "metappFrontend": 42,
+    "appBuildDeclarationsAndTypes": "passed",
+    "uiContract": "passed",
+    "metappTypesAndGeneratedPwa": "passed"
+  },
+  "mechanism": "One existing updater, stable sw.js with updateViaCache:none; takeover checks the actual release before navigation. Existing marker remains while a navigation has not advanced the build; repeated automatic navigation waits for explicit activation. Current-build confirmation clears the old attempt.",
+  "notExecuted": [
+    "Real browser Service Worker installation/controller/cache/navigation journey: explicit authorization still pending",
+    "User browser diagnostics",
+    "Android",
+    "User NAS",
+    "Live user Matrix"
+  ],
+  "userBrowserRecoveryConfirmed": false,
+  "gatewayProgramUpdateRequired": false
+}
