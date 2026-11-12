@@ -1,0 +1,20 @@
+{
+  "sourceRevision": "8f573f6b6df11cc95ce2edc623b0b6d3d190d217",
+  "buildVersion": "20261112.033132-8f573f6",
+  "beforeFix": "All three actual Vite PWA configuration paths (root, Pages, nested custom) fail: the explicit network update navigation can be replaced by the old precached index.",
+  "afterFix": {
+    "frontendChecks": 42,
+    "routingChecksRepeatedAfterTestImportFix": 3,
+    "clientTypecheck": "passed",
+    "staticPwaBuild": "passed",
+    "generatedWorkerRouteInspection": "passed: update URL bypasses fallback, ordinary navigation retains offline fallback"
+  },
+  "scope": "Metapp generated Workbox NavigationRoute denylist; existing shared update checker and its version query unchanged.",
+  "gatewayOrNativeUpdateRequired": false,
+  "notExecuted": [
+    "Live browser: activation/cache/navigation journey awaiting explicit authorization",
+    "Android",
+    "User NAS",
+    "Live user Matrix"
+  ]
+}
