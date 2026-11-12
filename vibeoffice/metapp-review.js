@@ -76,3 +76,11 @@ export function reviewWorkbook(L,workbook,operations) {
   changes.sort((a,b)=>a.sheet.localeCompare(b.sheet)||L.formula.parseCell(a.cell).r-L.formula.parseCell(b.cell).r||L.formula.parseCell(a.cell).c-L.formula.parseCell(b.cell).c);
   return{changes,requestedCount:targets.size,unchangedCount:changes.filter(c=>c.requested&&c.unchanged).length,impactCount,omittedImpacts,formulaCount:[...targets.values()].filter(op=>op.type==='cell.setFormula').length,errors,warnings};
 }
+
+/** Compare two actual saved workbooks; never recreate a candidate from operations. */
+export function compareWorkbooks(L,before,after){
+ const scan=workbook=>{const result=new Map();for(const sheet of workbook.sheets)sheet.rows.forEach((row,r)=>row?.cells.forEach((cell,c)=>{if(cell)result.set(JSON.stringify([sheet.name,L.formula.cellName(r,c)]),{sheet:sheet.name,cell:L.formula.cellName(r,c),state:{value:cell.v??null,...(cell.f!=null?{formula:cell.f}:{})}});}));return result;};
+ const a=scan(before),b=scan(after),blank={value:null},changes=[];
+ for(const key of new Set([...a.keys(),...b.keys()])){const left=a.get(key),right=b.get(key),previous=left?.state??blank,next=right?.state??blank;if(JSON.stringify(previous)!==JSON.stringify(next))changes.push({sheet:(right??left).sheet,cell:(right??left).cell,before:previous,after:next,requested:true});}
+ return{changes,errors:[],warnings:[]};
+}

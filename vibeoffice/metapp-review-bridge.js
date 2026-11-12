@@ -58,7 +58,16 @@
   const m=event.data;
   try{
    if(m.type==='ready-request'){if(initialized)send('ready');return;}
-   if(m.type==='review'){
+   if(m.type==='compare'){
+    const opening=++epoch;before=after=review=identity=undefined;
+    if(!m.documentId||!Number.isInteger(m.revision)||m.revision<1)throw new Error('对照缺少文件版本');
+    const read=data=>L.xlsxRead.read(Uint8Array.from(atob(data),c=>c.charCodeAt(0)));
+    const original=await read(m.beforeData),proposed=await read(m.afterData),{compareWorkbooks}=await module;if(opening!==epoch)return;
+    const result=compareWorkbooks(L,original,proposed);if(m.changes)result.changes=m.changes;
+    prepare(original);prepare(proposed);before=original;after=proposed;review=result;
+    identity={requestId:m.requestId,documentId:m.documentId,revision:m.revision,name:m.name};
+    show(m.version==='before'?'before':'after');send('reviewed',{...identity,version,review:result});
+   }else if(m.type==='review'){
     const opening=++epoch;before=after=review=identity=undefined;
     if(!m.documentId||!Number.isInteger(m.revision)||m.revision<1)throw new Error('预览缺少文件版本');
     const bytes=Uint8Array.from(atob(m.data),c=>c.charCodeAt(0));

@@ -1,0 +1,74 @@
+{
+  "releaseId": "metapp-gateway-0.1.0.0018-amd64",
+  "sourceRevision": "b8b2fd1bd3eaadcd6f51b4dabf722b4a3330e5af",
+  "sdkFeatureRevision": "92d99393a98909c4c1a0f2ac6452c7c87a769e6b",
+  "programArtifact": {
+    "format": "tar.gz",
+    "sha256": "47f66509d3dee21ed98645f0e3b7d5f804f650165a052a5e8ab04c5a2ebd8a1a",
+    "bytes": 272784827,
+    "architecture": "x64",
+    "hostApiVersion": 1
+  },
+  "programOnly": true,
+  "initialDockerVersion": "0.1.0.0016",
+  "backendImplementationTests": 59,
+  "additionalExactWorkbookComparisonTests": 5,
+  "clientImplementationTests": 48,
+  "signedSdkRequestIntegration": "passed; real SDK/Rust/independent disk, Matrix HTTP boundary only",
+  "fixedLibraryIntegration": {
+    "passed": true,
+    "scope": "Implementation integration; raw Matrix HTTP + HaS HTTP fixtures, production Node SDK/client adapter/Gateway/Rust/own disk cold reconstruction; no browser, live Matrix, NAS, ViewProtocol or AI account",
+    "checks": [
+      "fresh installation provisions one fixed library in the configured directory",
+      "new project creation is refused",
+      "library settings use signed SDK commands and verified shared state",
+      "upload stays unconfirmed until exact-revision privacy confirmation",
+      "original and sanitized files remain available for comparison",
+      "text preview and restoration use the same private mapping",
+      "same paired device cold-opens Office without selecting a chat and retains confirmed revision and global policy"
+    ]
+  },
+  "linuxProgramArchiveCheck": {
+    "passed": true,
+    "scope": "Actual signed program archive extracted into existing version16 Docker image; isolated synthetic identity and Office data, no Matrix/network/model/browser/NAS",
+    "architecture": "x64",
+    "uid": 1000,
+    "capabilities": "none",
+    "noNewPrivileges": true,
+    "concurrentDirectoryCalls": 32,
+    "canonicalSignedDocumentPerRevision": true,
+    "storedOfficeBytesIdenticalAfterNewProcess": true,
+    "exportedOfficeContentsIdenticalAfterNewProcess": true,
+    "originalNamesRestored": true,
+    "unconfirmedAgentReadDenied": true,
+    "exactRevisionPrivacyConfirmation": true,
+    "pendingChangesLeaveFileUnchanged": true,
+    "formulaImpactVisible": true,
+    "globalDirectModeSaves": true
+  },
+  "linuxBaseImageId": "sha256:e8c6e6d2ce14f72d3fc4cf88f2a955d1b1122d44399ed20be66006e0448c17c4",
+  "notExecuted": [
+    "User NAS hardware/update transaction",
+    "Live browser",
+    "Android",
+    "Cloud AI login",
+    "Full product ViewProtocol journey"
+  ],
+  "validationNotes": [
+    "Original parallel backend run timed out; same tests and deadlines passed with one worker",
+    "Initial Linux smoke check omitted the production METAPP_VIBEOFFICE_ROOT environment; rerun using the shipping launcher path passed",
+    "Release driver registry digest lookup failed for local-only image; verified the local immutable image ID and used shipping assembly/signing directly"
+  ],
+  "frontend": {
+    "url": "https://escapingbug.github.io/metapp-release/",
+    "basePath": "/metapp-release/",
+    "applicationId": "metapp",
+    "sourceRevision": "565f49f79fef58add0c4d5c1881ea221debbfe7e",
+    "buildVersion": "20261112.092926-565f49f",
+    "builtAt": "2026-11-12T09:30:17.945Z",
+    "architecture": "Static frontend; NAS Gateway connects through existing Matrix"
+  },
+  "frontendSdkCommit": "5d51644e2a53b398c19f29bc5661d77cf4e292ab",
+  "pwaBuildAndOfflineShellCheck": "passed",
+  "fixedProjectRenderer": "passed: project picker, change-project action and temporary-conversation controls omitted"
+}

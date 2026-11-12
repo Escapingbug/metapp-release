@@ -2,8 +2,8 @@
   "url": "https://escapingbug.github.io/metapp-release/",
   "basePath": "/metapp-release/",
   "applicationId": "metapp",
-  "sourceRevision": "377db70e56e616fa050e8a629b8e5bfdef33c524",
-  "buildVersion": "20261112.065906-377db70",
-  "builtAt": "2026-11-12T07:01:05.078Z",
+  "sourceRevision": "565f49f79fef58add0c4d5c1881ea221debbfe7e",
+  "buildVersion": "20261112.092926-565f49f",
+  "builtAt": "2026-11-12T09:30:17.945Z",
   "architecture": "Static frontend; NAS Gateway connects through existing Matrix"
 }

@@ -18,9 +18,9 @@ node /opt/metapp/cli.mjs invite
 
 现有 Matrix 可以是自建的公网服务。当前需支持密码登录和一次性登录票据；浏览器与 NAS 均需访问其客户端及媒体接口，浏览器跨域设置须正确。Metapp 不安装 Matrix／PostgreSQL，不创建通信账号或另一套管理认证。
 
-网页 UI 已独立部署。手机可先用浏览器；Android 后台连接可安装配套调试 APK，首次选择同一个 Pages 地址，再使用新邀请。当前 APK 支持 Android 12+／arm64。
+网页 UI 已独立部署，电脑和手机都可使用浏览器。本轮单一资料库新流程尚未进行 Android APK 验收。
 
-先用合成示例验证隐私处理、表格修改和保存。AI 可稍后连接；Kimi 官方授权入口是在同一容器终端执行 `node /opt/metapp/cli.mjs kimi-login`。账号凭据保存在 NAS 私有目录。
+首次连接后，先在设备软件更新入口将 Gateway 在线更新至 **0.1.0.0018**，然后应用网页更新。资料库会自动使用 `files` 目录，无需创建或命名工作区。上传后先确认脱敏结果，再供 Agent 使用；在“我的资料 → 资料库设置”统一选择确认后修改或直接修改。先用合成示例验证隐私处理、表格修改和保存。AI 可稍后连接；Kimi 官方授权入口是在同一容器终端执行 `node /opt/metapp/cli.mjs kimi-login`。账号凭据保存在 NAS 私有目录。
 
 后续常规更新：打开 Metapp 的设置，选择这台设备的软件更新，检查并准备新版本，再确认安装。准备阶段继续使用旧版；安装时短暂断开，恢复 Matrix 同步后显示结果。无需重新上传 Docker 镜像，也无需 AI 账号。程序与更新记录保存在 `data/gateway-runtime`，业务数据在 `data/workstation` 和 `files`；完整备份这些目录，不删除数据卷。请预留至少 3 GB 的程序更新空间（不含 Office 资料）。
 
