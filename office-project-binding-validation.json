@@ -1,0 +1,33 @@
+{
+  "sourceRevision": "377db70e56e616fa050e8a629b8e5bfdef33c524",
+  "buildVersion": "20261112.065906-377db70",
+  "originalFailure": "The production Office adapter cold-opened with no selected chat and multiple verified projects times out with the same project connection recovering message.",
+  "checks": {
+    "frontendImplementationAndVueComponentContracts": 47,
+    "clientTypes": "passed",
+    "staticBuildAndGeneratedPwa": "passed",
+    "coldRecoveryIntegration": "passed: production Node SDK/Rust/own disk, Gateway and raw Matrix HTTP boundary; no re-pairing; opens both original workspaces and original creation identity"
+  },
+  "expandedBackendChecks": {
+    "initial": "56 checks: 47 passed, 9 failed while CLI startup/file operations exceeded their existing deadlines",
+    "reruns": "The remaining SDK channel check, invitation CLI, ACP authentication/tool gate, cancellation and three document-choice checks passed without product changes or longer deadlines",
+    "unresolved": [
+      "kimi-login.test.ts: device authorization still starting after the existing 10 second wait",
+      "document-choice.test.ts: sequential desktop/phone save check exceeds its existing 5 second test deadline"
+    ],
+    "passedInFull": false,
+    "backendOrDependencyChangesInThisRelease": false
+  },
+  "mechanism": "Office requests resources through the SDK verified Workspace entry. Chat selection remains separate. Initial verified state arrival opens the original connection; no new client, auth flow, data store, polling or recovery scheduler.",
+  "notExecuted": [
+    "Real browser rendering/Service Worker lifecycle: explicit authorization not received",
+    "User NAS",
+    "Live user Matrix account",
+    "Android",
+    "Workspace ViewProtocol full user journey"
+  ],
+  "userRecoveryConfirmed": false,
+  "gatewayProgramUpdateRequired": false,
+  "staticFilesVerifiedAgainstBuild": true,
+  "protectedGatewayAndPreviousValidationFilesPreserved": true
+}
