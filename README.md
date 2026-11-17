@@ -14,6 +14,8 @@
 
 ## Gateway 后续更新
 
+如果 **Prepare Gateway update** 无法点击，先到 **Settings → App & help → Metapp → Check for updates → Apply web update** 更新网页，再回 **Computers → NAS → Check status** 准备更新。2026-11-17 网页已修正已安装 Metapp Gateway 漏报可选目录标记导致的禁用；目标仍是 0.1.0.0019，无需更换 Docker。验证记录见 `gateway-update-button-validation.json`。
+
 当前在线程序为 [0.1.0.0019](https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0019)，修正确认前保存及原文写入问题，提供单一资料库、上传脱敏确认和统一修改权限。已安装 0.1.0.0016 Docker 的设备可直接在线更新，无需上传新镜像；首次安装仍使用上面的 0.1.0.0016 Docker ZIP。
 
 首装新版后，在 Metapp 设置的设备软件更新入口检查、准备并确认安装。后续常规 Gateway、SDK 和 Office 后台更新不需要重新上传 Docker 镜像，不需要 AI 账号。保留整个 `data` 和 `files` 目录；系统库或模型运行环境的重大变更仍可能要求更新基础镜像。

@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "sourceRevision": "b9a5a9b60a327cd5898336bc75e8c309bc544aa0",
+  "appSourceRevision": "1ea9c3ce0570187a374829953dae9ef379d8f63a",
+  "scope": "Frontend only; no new Gateway program or Docker image",
+  "gatewayTarget": "metapp-gateway-0.1.0.0019-amd64",
+  "cause": "Metapp directory omits optional onlineUpdate hint; client wrongly required it despite exact-process-bound signed Gateway software transaction state",
+  "tests": {
+    "beforeFix": "desktop and compact production Workspace journeys reproduce disabled prepare action",
+    "journeys": [
+      {
+        "passed": true,
+        "viewport": "desktop",
+        "timings": {
+          "openingMs": [
+            19.613375000000815,
+            33.1529580000024
+          ],
+          "preparationMs": 3077.0390829999997
+        },
+        "scope": "Production Workspace ViewProtocol/Headless host/controller → actual Node SDK/Rust/own disk → raw Matrix HTTP → production Metapp Gateway/update supervisor. Signed publisher HTTP/archive fixtures; no archive activation, browser, NAS or AI account.",
+        "checks": [
+          "missing onlineUpdate directory flag reproduced with actual Gateway",
+          "usable prepare confirmation and cancellation",
+          "own-disk cold reopen without re-pairing",
+          "actual maintenance session creation",
+          "signed archive preparation and verified prepared transaction",
+          "actual next installation action enabled, current program unchanged"
+        ],
+        "errors": []
+      },
+      {
+        "passed": true,
+        "viewport": "compact",
+        "timings": {
+          "openingMs": [
+            1.526917000002868,
+            0.9501249999957508
+          ],
+          "preparationMs": 3363.0945409999986
+        },
+        "scope": "Production Workspace ViewProtocol/Headless host/controller → actual Node SDK/Rust/own disk → raw Matrix HTTP → production Metapp Gateway/update supervisor. Signed publisher HTTP/archive fixtures; no archive activation, browser, NAS or AI account.",
+        "checks": [
+          "missing onlineUpdate directory flag reproduced with actual Gateway",
+          "usable prepare confirmation and cancellation",
+          "own-disk cold reopen without re-pairing",
+          "actual maintenance session creation",
+          "signed archive preparation and verified prepared transaction",
+          "actual next installation action enabled, current program unchanged"
+        ],
+        "errors": []
+      }
+    ],
+    "focusedImplementation": 29,
+    "clientImplementation": 50,
+    "appTypesBuildAndSharedUI": "passed",
+    "clientTypesBuildPWAAndAccountIsolation": "passed",
+    "existingBaselineFailures": "3 display-copy assertions fail identically on original pinned source; not claimed green"
+  },
+  "mechanism": "Existing verified software state, directory, controller and update supervisor. No second login, authority, cache, queue, retry or state format. Blue-green restriction preserved.",
+  "notExecuted": [
+    "User NAS",
+    "User Matrix",
+    "Live browser",
+    "Android",
+    "Archive activation"
+  ],
+  "frontend": {
+    "url": "https://escapingbug.github.io/metapp-release/",
+    "basePath": "/metapp-release/",
+    "applicationId": "metapp",
+    "sourceRevision": "b9a5a9b60a327cd5898336bc75e8c309bc544aa0",
+    "buildVersion": "20261117.033208-b9a5a9b",
+    "builtAt": "2026-11-17T03:32:55.452Z",
+    "architecture": "Static frontend; NAS Gateway connects through existing Matrix"
+  }
+}
