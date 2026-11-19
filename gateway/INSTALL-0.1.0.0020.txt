@@ -1,0 +1,35 @@
+Metapp NAS Gateway 0.1.0.0020 (amd64)
+
+在 NAS Docker 项目的现有 Gateway 容器终端执行。保留原 data/files 挂载，不重建账号，不删除更新状态。
+
+1. 下载一次性脚本到容器的 /tmp（由你现有的 SDK supervisor 执行所有更新决定）：
+
+node --input-type=module -e 'import{writeFile}from"node:fs/promises";const r=await fetch("https://escapingbug.github.io/metapp-release/gateway/installed-gateway-update.mjs");if(!r.ok)throw Error("下载失败 "+r.status);await writeFile("/tmp/metapp-gateway-update.mjs",await r.text(),{mode:0o600});'
+
+2. 查看本机状态：
+
+node /tmp/metapp-gateway-update.mjs status
+
+3. 准备目标版本（仅下载、验签、封存；不会安装）：
+
+node /tmp/metapp-gateway-update.mjs prepare metapp-gateway-0.1.0.0020-amd64
+
+只有 phase=staged 才进入下一步。若报错，保留输出继续排查，不清空更新状态。
+
+4. 正常安装确认：
+
+node /tmp/metapp-gateway-update.mjs install metapp-gateway-0.1.0.0020-amd64
+
+如果明确提示 forward_only_confirmation_required，说明从你当前版本跨过了 Office 保存格式更新。先确认已保留 data/files 备份，再显式确认：
+
+node /tmp/metapp-gateway-update.mjs install metapp-gateway-0.1.0.0020-amd64 --allow-forward-only
+
+5. 更新会短暂重启 Gateway/Host。再次查看状态：
+
+node /tmp/metapp-gateway-update.mjs status
+
+完成结果：phase=committed，currentBuildId=metapp-gateway-0.1.0.0020-amd64。
+
+当前线上网页暂时保留旧版，避免新普通会话界面连到旧 Gateway 时触发旧自动行为。NAS 更新完成后，再发布本次准备好的网页 20261119.091708-675cfbe。无需重新配对或更换 Docker 镜像。
+
+界面采用 Malink 的普通会话更新交互；NAS 继续使用签名预编译程序包，无需 GitHub 私有源码访问或本机构建。

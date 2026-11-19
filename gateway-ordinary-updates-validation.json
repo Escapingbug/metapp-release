@@ -1,0 +1,80 @@
+{
+  "releaseId": "metapp-gateway-0.1.0.0020-amd64",
+  "sourceRevision": "675cfbe06978e31aeaa656e7bb9de71ecb0cc1d8",
+  "sdkSourceRevision": "2c59c639531bd71048704a0227143a73106738e7",
+  "programArtifact": {
+    "format": "tar.gz",
+    "sha256": "67ae2ddb1251341177cd4b0f1774113101dabe735d82c4e00852a02c879c5250",
+    "bytes": 272783261,
+    "architecture": "x64",
+    "hostApiVersion": 1
+  },
+  "programOnly": true,
+  "initialDockerVersion": "0.1.0.0016",
+  "officeFilesStateVersion": 2,
+  "sourceFilesCompared": 60,
+  "implementation": {
+    "updateControlChecks": 103,
+    "currentSoftwareOwnerChecks": 23,
+    "clientAndToolRegressions": 49,
+    "sessionToolAndKimiLoginChecks": 6,
+    "sdkAdminAndLifecycleChecks": 21,
+    "typesAndBuilds": "SDK, shared application, Metapp client/Gateway and PWA build/UI passed; source patch and packaged API/declarations/hash verified"
+  },
+  "business": {
+    "ordinaryUpdateConversation": {
+      "desktop": true,
+      "compact": true,
+      "boundary": "Actual Headless Workspace/lifecycle, Node SDK/Rust/own SQLite, production Gateway and genuine recorded ACP. Matrix HTTP and signed publisher HTTP only are fixtures. Creation leaves editable unsent task; ordinary permissions; both clients receive; recorded reply."
+    },
+    "metappUpdateEntry": {
+      "desktop": true,
+      "compact": true,
+      "boundary": "Actual Metapp Gateway, supervisor, Node SDK/Rust/own disk; open/cancel/cold reopen only. No Agent or preparation/install claim."
+    }
+  },
+  "linuxProgramCheck": {
+    "passed": true,
+    "scope": "Actual signed archive in existing version16 Linux Docker image; synthetic Office data, no network/Matrix/browser/NAS/model",
+    "architecture": "x64",
+    "uid": 1000,
+    "capabilities": "none",
+    "noNewPrivileges": true,
+    "unconfirmedUploadHasNoFormalDocumentOrFile": true,
+    "exactReviewedBytesSavedWithoutResanitization": true,
+    "manualEditWaitsForConfirmation": true,
+    "discardPreservesCurrentFile": true,
+    "onlySanitizedWorkbookBytesOnDisk": true,
+    "gatewayRestoresOriginalInMemory": true,
+    "globalAgentDirectMode": true,
+    "recycleRestore": true,
+    "coldProcessPreservesSanitizedVersion": true
+  },
+  "linuxUpgrade": {
+    "passed": true,
+    "scope": "Linux container implementation integration; raw Matrix/publisher boundaries",
+    "directory": "/tmp/metapp-container-update-IUnMEt",
+    "buildId": "metapp-gateway-0.1.0.0020-amd64",
+    "identityPreserved": true,
+    "matrixCommands": false,
+    "officeReadableAfterRestart": true,
+    "updateWithoutImageReplacement": true
+  },
+  "linuxPublicApi": {
+    "passed": true,
+    "scope": "Actual Linux archive SDK API and public CLI resolution; no Gateway started"
+  },
+  "linuxFixture": "Original release19 bytes -> exact release20 bytes, UID1000, no capabilities/new privileges, isolated Matrix HTTP and HTTPS publisher/test signatures. Original version16 stable launcher bytes. Helper status/prepare/install, exact current program unchanged until install, Host self-update, restart, identity/login and Office snapshot preserved. Matrix command/Agent branch not executed.",
+  "baselineFailures": "Mac container program implementation suite has startup/harness timeouts; same unchanged source baseline fails. Preserved originals; not claimed passed. Linux target archive/activation checks above are separate.",
+  "notExecuted": [
+    "User NAS or live Matrix",
+    "Real browser or Android",
+    "Agent invocation of the new Metapp MCP tool through a new genuine ACP recording"
+  ],
+  "web": {
+    "buildVersion": "20261119.091708-675cfbe",
+    "prepared": true,
+    "published": false,
+    "reason": "Upgrade old NAS program before publishing the ordinary-preset UI; a PWA cannot remove old automatic Gateway behavior."
+  }
+}

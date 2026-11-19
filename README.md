@@ -61,3 +61,6 @@ files 是脱敏输出目录，请通过网页上传原文。目录中未知或�
 维护者在源码仓库执行 `pnpm build:pages`，校验成功后将 `apps/client/dist` 更新到本仓库，再提交推送。保留 `gateway/`、`gateway-agent-updates/`、`release.json` 与本 README，不用无排除规则的 `rsync --delete`。PWA、更新文件和 Office 编辑器都使用 `/metapp-release/` 子路径。
 
 编译与 HTTP 检查不代表真实 NAS、Matrix、浏览器和手机的完整流程已验收。
+
+
+2026-11-19: NAS Gateway 0.1.0.0020 follows ordinary update conversations. Upgrade the NAS Gateway before switching to the prepared webpage 20261119.091708-675cfbe. The live static UI is deliberately unchanged in this publication. See gateway/INSTALL-0.1.0.0020.txt and gateway-ordinary-updates-validation.json. Older signed releases and first-install Docker files remain available.
