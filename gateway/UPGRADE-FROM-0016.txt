@@ -1,0 +1,45 @@
+Metapp：最初 0.1.0.0016 NAS 容器升级到 0.1.0.0020（2026-11-20 复测）
+
+本次已在真实 16 版 Docker 镜像中验证：保留原容器、data/files、Matrix 账号和设备身份；通过原 SDK updater 下载、验签、准备、明确确认后安装、自动备份、Host 自更新和冷重启。不需要重新上传 Docker 镜像。用户实际 NAS 尚未测试。
+
+在绿联 NAS 的 Docker → 容器 → 当前运行 Metapp Gateway 的容器 → 终端，启动 /bin/sh。以下命令都在这个容器终端执行。
+
+1. 下载一次性本机脚本并查看原更新服务状态：
+
+node --input-type=module -e 'import{writeFile}from"node:fs/promises";const r=await fetch("https://escapingbug.github.io/metapp-release/gateway/installed-gateway-update.mjs");if(!r.ok)throw Error("下载失败 "+r.status);await writeFile("/tmp/metapp-gateway-update.mjs",await r.text(),{mode:0o600});'
+node /tmp/metapp-gateway-update.mjs status
+
+如果已经 phase=committed 且 currentBuildId=metapp-gateway-0.1.0.0020-amd64，Gateway 已升级，不再执行安装。若是 failed/repair_required 或无法连接 socket，保留输出排查，不能清空状态或重试未知的安装。
+
+2. 若仍为 16 版且没有未解决的失败，准备 20 版：
+
+node /tmp/metapp-gateway-update.mjs prepare metapp-gateway-0.1.0.0020-amd64
+
+只有返回 phase=staged 才继续；下载／验签／封存时不会重启。若报错，保留原输出。
+
+3. 查看准备后的风险模式：
+
+node /tmp/metapp-gateway-update.mjs status
+
+16 跨 Office 保存格式变更会显示 activationMode=forward-only。请保留 data/files 备份，再明确确认安装：
+
+node /tmp/metapp-gateway-update.mjs install metapp-gateway-0.1.0.0020-amd64 --allow-forward-only
+
+如果你的实际来源不是 16，而且 activationMode=rollback-safe，使用不带确认参数的正常安装：
+
+node /tmp/metapp-gateway-update.mjs install metapp-gateway-0.1.0.0020-amd64
+
+安装会短暂中断 Gateway。forward-only 的原更新服务会在停止旧程序后创建并核验备份，禁止自动用旧二进制回滚。
+
+4. 完成后再次查看：
+
+node /tmp/metapp-gateway-update.mjs status
+
+成功必须同时有 phase=committed 和 currentBuildId=metapp-gateway-0.1.0.0020-amd64。准备成功不是安装完成；不要重新配对。
+
+Gateway 到 20 后，再切换已准备的普通更新会话网页。当前公开网页仍是 20261117.033208-b9a5a9b；新网页 20261119.091708-675cfbe 的 ZIP 随 Gateway 20 release 提供，尚未在线切换。先反馈上述状态，再进行网页切换。
+
+上游新改动：Malink 2026-11-20 main 39fc4be37 简化 v2 来源版本范围准入，并保留验签、seal、单写者、健康和已接受的 forward-only 边界。Metapp 20 是此前普通会话的定向移植，保留 NAS 签名预编译 artifact 与 Office 格式声明；今天的上游规则尚未包含在 20 中。此次安装是旧 NAS 的可用过渡路径，不表示已经完整升级到最新 Malink。
+
+验证详情：../nas-upgrade-from-original-validation.json
+发布包：https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0020

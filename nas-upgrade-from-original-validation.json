@@ -1,0 +1,30 @@
+{
+  "upstreamReviewed": "39fc4be377693faaf834a511129d5a2f930e114d",
+  "upstreamChangesPorted": false,
+  "entry": "owner-local installed-gateway-update.mjs; no actual user NAS involved",
+  "containerImage": "metapp/ugreen-workstation:0.1.0-16-amd64",
+  "initialArchiveSha256": "edb053e13a39771d7ad87fce06f8a7200320b5f065b12809e4c2f258183e3273",
+  "targetArchiveSha256": "67ae2ddb1251341177cd4b0f1774113101dabe735d82c4e00852a02c879c5250",
+  "result": {
+    "passed": true,
+    "scope": "Linux container implementation integration; raw Matrix/publisher boundaries",
+    "directory": "/tmp/metapp-container-update-DSpWjO",
+    "buildId": "metapp-gateway-0.1.0.0020-amd64",
+    "sourceRelease": "metapp-gateway-0.1.0.0016-amd64",
+    "forwardOnlyConfirmed": true,
+    "identityPreserved": true,
+    "matrixCommands": false,
+    "officeReadableAfterRestart": true,
+    "updateWithoutImageReplacement": true
+  },
+  "unchangedLoginIdentity": true,
+  "oldWorkbookDataRevisionInspectionPreserved": true,
+  "forwardOnlyRefusalBeforeConfirmation": true,
+  "preparedWithoutRestart": true,
+  "verifiedStoppedStateBackup": true,
+  "coldRestartHostSelfUpdate": true,
+  "notTested": [
+    "Actual user NAS, live Matrix or browser",
+    "New Agent tool call or installation via UI"
+  ]
+}
