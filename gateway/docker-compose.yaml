@@ -12,7 +12,7 @@ x-metapp-logging: &a1
     max-file: "3"
 services:
   initialize:
-    image: metapp/ugreen-workstation:0.1.0-16-amd64
+    image: metapp/ugreen-workstation:0.1.0-21-amd64
     user: 0:0
     command:
       - node
@@ -29,11 +29,12 @@ services:
       - no-new-privileges:true
     pull_policy: never
   workstation:
-    image: metapp/ugreen-workstation:0.1.0-16-amd64
+    image: metapp/ugreen-workstation:0.1.0-21-amd64
     init: true
     logging: *a1
     restart: unless-stopped
     environment:
+      METAPP_FIRST_DEVICE_INVITATION_LOG: "1"
       METAPP_HOME: /data/workstation
       METAPP_GATEWAY_INSTALL_ROOT: /data/gateway-runtime
       METAPP_MATRIX_URL: *matrix_url

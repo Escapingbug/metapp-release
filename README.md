@@ -2,69 +2,33 @@
 
 网页入口：https://escapingbug.github.io/metapp-release/
 
-本仓库只发布 Metapp 的静态前端和可安装产物，不保存账号、密码、会话、私钥或业务文件；更新验签公钥可以公开。前端通过现有 Matrix 与用户 NAS 上的 Gateway 通信；NAS 不托管网页，不需要应用公网地址或端口映射。
+本仓库发布静态网页和可安装产物。NAS 只运行 Metapp Gateway；网页通过现有 Matrix 与 NAS 通信，无需 NAS 应用地址、网页服务或端口映射。
 
-## NAS 安装
+## 当前完整部署
 
-[当前安装包 0.1.0.0016](https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0016) · [安装指南](gateway/INSTALL.zh-CN.md) · [Compose 模板](gateway/docker-compose.yaml)
+[下载 0.1.0.0021 Docker ZIP](https://github.com/Escapingbug/metapp-release/releases/download/metapp-nas-gateway-v0.1.0.0021/metapp-nas-gateway-0.1.0.0021-amd64.zip) · [安装指南](gateway/INSTALL.zh-CN.md) · [版本与校验信息](release.json)
 
-从 Releases 下载当前的 Linux amd64 Gateway Docker ZIP，导入其中唯一的镜像，填写已有 Matrix 地址和账号，将原密码写入私有密码文件，然后启动 Compose。网页由本站提供，无需在 NAS 下载模型或编译。
+此版完整集成 Malink main `f15a2cc1976b05d2a49cd99ce7fca1bd936c117a`，保留 Metapp 品牌、独立浏览器连接、单一资料库与隐私流程。
 
-在 `workstation` 容器终端执行 `node /opt/metapp/cli.mjs invite`，打开链接或扫码，核对六位码后确认一次并等待同步。AI 官方授权目前仍使用容器终端入口，详见安装包内说明。
+1. 停止旧 Docker 项目，保留旧 data/files。将 ZIP 解压到 NAS 新目录，导入 images 中唯一镜像，并创建独立空 data/files。
+2. 在 Compose 顶部填写现有 Matrix 地址与账号，将原密码写入 matrix-password.txt。公开包不含账号、密码或私钥。
+3. 创建主 Docker 项目，启动后查看 workstation 日志，打开首台设备邀请并核对六位码。无需 SSH 或容器终端。
+4. 需要 Agent 时，从包内 kimi-login 子目录创建另一个一次性 Docker 项目，在日志中取得官方授权链接。资料功能可先使用；新建 Agent 会话和准备更新前先完成授权。
 
-## Gateway 后续更新
+本版使用 v2 签名更新协议。旧 0.1.0.0016–0020 的 v1 安装不能通过旧更新器直接应用本版；本次按全新目录部署，不复制旧 gateway-runtime，不删除旧业务数据。Matrix 服务与 Metapp 通信账号可以继续使用。新实例需要接受新邀请。
 
-如果 **Prepare Gateway update** 无法点击，先到 **Settings → App & help → Metapp → Check for updates → Apply web update** 更新网页，再回 **Computers → NAS → Check status** 准备更新。2026-11-17 网页已修正已安装 Metapp Gateway 漏报可选目录标记导致的禁用；目标仍是 0.1.0.0019，无需更换 Docker。验证记录见 `gateway-update-button-validation.json`。
+## 后续更新
 
-当前在线程序为 [0.1.0.0019](https://github.com/Escapingbug/metapp-release/releases/tag/metapp-nas-gateway-v0.1.0.0019)，修正确认前保存及原文写入问题，提供单一资料库、上传脱敏确认和统一修改权限。已安装 0.1.0.0016 Docker 的设备可直接在线更新，无需上传新镜像；首次安装仍使用上面的 0.1.0.0016 Docker ZIP。
+在 Metapp 的设备软件设置中检查更新，打开普通更新会话。预置任务仍需你发送；Agent 仅准备已签名程序包，安装另行确认。后续常规 Gateway／SDK／Office 更新无需重新上传镜像；基础系统或模型运行环境的重大升级按当次说明处理。
 
-首装新版后，在 Metapp 设置的设备软件更新入口检查、准备并确认安装。后续常规 Gateway、SDK 和 Office 后台更新不需要重新上传 Docker 镜像，不需要 AI 账号。保留整个 `data` 和 `files` 目录；系统库或模型运行环境的重大变更仍可能要求更新基础镜像。
-
-## 浏览器连接更新
-
-如果旧版在首页与带 `__malink_build` 参数的地址之间反复跳转，请强制刷新一次获取新页面；无需清除账号或重新配对。新版的显式更新导航会绕过旧离线页面缓存。
-
-网页更新器使用固定缓存脚本地址；缓存接管本身不再触发刷新。若一次更新跳转后仍是旧版本，会停止自动重复跳转，转为等待用户应用更新；确认运行线上版本后正常结束这次尝试。真实浏览器恢复尚需单独验证。
-
-网页更新不需要先接受邀请。在 **Settings → App & help** 的 Metapp 卡片可查看当前网页版本并点击 **Check for updates**；等待应用的新版可点击 **Apply web update**。首次未配对时同样可用。
-
-Metapp 现在独立保存连接、设备身份和本地数据，可与同一域名下的
-Malink 网页同时使用。首次打开新版 Metapp，请使用 NAS Gateway
-生成的新邀请连接一次；之后会恢复 Metapp 自己的连接。
-旧共享登录保持原样，不自动复制或清除，Malink 无需退出登录。
-浏览器隔离本身无需更新 NAS 或 APK。要启用容器内在线更新，请首次安装 0.1.0.0016 或更新的 Gateway 镜像。
-
-已使用 Metapp 独立连接的用户，如果曾遇到 `Workspace Gateway Directory revision is immutable`，请应用网页更新后重新打开页面。新版会验证等价签发副本并继续使用原有身份和工作区。
+网页仍由 GitHub Pages 更新。在 App & help 的 Metapp 卡片检查并应用网页更新，无需先接受邀请。浏览器连接与 Malink 隔离，不复制或清除另一产品的登录。
 
 ## 我的资料
 
-首次连接后，先在设备软件更新入口安装 Gateway **0.1.0.0019**，再应用网页更新。无需重新配对或清除账号。
+只有一个资料库，主要用于上传、查看、下载和确认。原文件自动脱敏后先显示对照，确认前不进入正式资料库或产生 NAS 文件／版本。NAS 文件只保存脱敏结果；Matrix 可保存加密原文，隐私映射加密保存，还原结果在 Gateway 内存中生成。
 
-资料库自动使用安装时接入的资料目录，已有资料库原位保留，不再创建、命名或选择工作区。网页中的“我的资料”按文件展示查看、上传、下载及待确认事项。
+资料库设置统一控制 Agent 直接修改或确认后修改。确认模式提供前后对照及修改标记。新会话直接对应资料库，发送前核对脱敏文本，消息可查看模型内容与还原内容的对照。手动标记脱敏尚未开放。
 
-上传自动脱敏后会打开原文／脱敏版对照。确认前不进入正式资料库，不生成 NAS 文件或新版本；确认后保存核对过的脱敏版，可用于所有会话。脱敏不正确时可放弃本次结果或稍后继续，手动标记功能尚未开放。
+## 发布与验证
 
-Matrix 可以保存传输和对照所需的原文，NAS 仅保存脱敏工作簿和加密映射。脱敏与反脱敏由 Gateway 完成；还原文件在内存中生成用于网页展示／下载。人工编辑也需核对脱敏结果后保存，确认前保留原文件。
-
-files 是脱敏输出目录，请通过网页上传原文。目录中未知或外部修改的文件不会自动入库或被覆盖，会显示提示。旧版导出的文件只在摘要与记录匹配时修正为脱敏版，包括回收站；不会删除历史备份或外部副本。
-
-本次文件状态版本升级，请按设备更新页面的备份确认继续；不清空 data/files，也不重新配对。
-
-在“我的资料 → 资料库设置”统一选择 Agent **确认后修改**（默认）或 **直接修改**。确认模式显示真实修改前后文件并标注直接改动和公式联动，确认后才保存；已经等待确认的修改不会因切换权限自动发布。
-
-新会话直接对应资料库。输入原文后先核对脱敏文本再发送；消息中可查看原文／模型内容与还原内容的对照。当前新流程的验收范围为网页实现和 Linux 程序包；没有进行真实浏览器、用户 NAS 或 APK 实测。本次验证范围详见 `privacy-storage-validation.json`，此前单资料库记录保留在 `single-library-validation.json`。
-
-## 发布来源
-
-当前来源与构建版本记录在 `deployment.json`。此分支根目录是完整静态构建产物；GitHub Pages 从 `main` 的根目录发布，`.nojekyll` 保留编辑器与 WASM 资源路径。
-
-维护者在源码仓库执行 `pnpm build:pages`，校验成功后将 `apps/client/dist` 更新到本仓库，再提交推送。保留 `gateway/`、`gateway-agent-updates/`、`release.json` 与本 README，不用无排除规则的 `rsync --delete`。PWA、更新文件和 Office 编辑器都使用 `/metapp-release/` 子路径。
-
-编译与 HTTP 检查不代表真实 NAS、Matrix、浏览器和手机的完整流程已验收。
-
-
-2026-11-19: NAS Gateway 0.1.0.0020 follows ordinary update conversations. Upgrade the NAS Gateway before switching to the prepared webpage 20261119.091708-675cfbe. The live static UI is deliberately unchanged in this publication. See gateway/INSTALL-0.1.0.0020.txt and gateway-ordinary-updates-validation.json. Older signed releases and first-install Docker files remain available.
-
-2026-11-20: Verified the original NAS Docker 0.1.0.0016 → Gateway 0.1.0.0020 owner-local upgrade, including explicit forward-only refusal/confirmation, stopped-state backup, Host self-update, cold restart and preserved login/identity/Office data. See gateway/UPGRADE-FROM-0016.txt and nas-upgrade-from-original-validation.json. No program, channel or frontend bytes changed in this documentation publication. New upstream main 39fc4be37 is reviewed, not yet ported into Metapp 20.
-
-2026-11-20: Added a terminal-free one-shot project task for remote NAS operation. See gateway/PROJECT-UPDATE.txt and gateway/project-update-service.yaml. Default status is read-only; the existing SDK supervisor remains the update owner. Real two-container Compose/shared-volume/Unix-socket and original16→20 upgrade/cold restart checks passed. No frontend, program, channel or historical release bytes changed.
+来源、网页构建和镜像摘要见 release.json；本轮验证见 latest-refresh-validation.json。历史验证文件和签名发布资料原样保留，不代表本版所有边界均已验收。没有连接用户实际 NAS／Matrix，未进行真实浏览器或 Android 测试；本轮不发布新 APK。

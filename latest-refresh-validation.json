@@ -1,0 +1,80 @@
+{
+  "passed": true,
+  "release": "0.1.0.0021-amd64",
+  "sourceCommit": "f0e1f5ce4f454e3e753f0caffac6fd76a013a5c2",
+  "malinkMainCommit": "f15a2cc1976b05d2a49cd99ce7fca1bd936c117a",
+  "malinkIntegrationCommit": "7af6700b429688b22478bea4784508dd77ca40f6",
+  "upstreamIntegration": "Full main merge, confirmed Git ancestry and exact patch reconstruction; five packages rebuilt together.",
+  "checks": {
+    "sourceTypes": [
+      "SDK",
+      "shared app",
+      "Metapp client",
+      "Office Gateway"
+    ],
+    "builds": [
+      "root Gateway",
+      "SDK including declarations",
+      "shared app including declarations",
+      "static Metapp Pages/PWA"
+    ],
+    "ui": "Shared controls/theme/copy contract passed.",
+    "ownerRegression": "73 assertions passed in first focused group; all 13 relevant packaged client/auth/ACP checks passed on final rerun.",
+    "headlessJourneys": [
+      "Empty-client file invitation, same-disk cold restore and continued recorded ACP work passed on isolated rerun.",
+      "Ordinary Gateway update conversation and recorded ACP continuation: compact passed initial run, desktop passed isolated rerun.",
+      "Actual Metapp Gateway/software owner entry, cancel and cold reopen passed desktop and compact."
+    ],
+    "privacyAndLogin": "File preservation regression passed isolated rerun; library policy, official Kimi device-code CLI/auth persistence, approval review and packaged single-use consent checks passed; v2 library connection contract has retained before-fix failures and 2 passing checks.",
+    "linuxShippingImage": {
+      "passed": true,
+      "scope": "Linux container implementation integration; raw Matrix/publisher boundaries",
+      "directory": "/tmp/metapp-container-update-teMeIO",
+      "buildId": "metapp-gateway-0.1.0.0022-amd64",
+      "sourceRelease": "metapp-gateway-0.1.0.0021-amd64",
+      "updateManifestVersion": 2,
+      "startupInvitationInLogs": true,
+      "identityPreserved": true,
+      "matrixCommands": true,
+      "officeReadableAfterRestart": true,
+      "updateWithoutImageReplacement": true
+    },
+    "linuxOwnerLocalUpdate": {
+      "passed": true,
+      "scope": "Linux container implementation integration; raw Matrix/publisher boundaries",
+      "directory": "/tmp/metapp-container-update-efaXKU",
+      "buildId": "metapp-gateway-0.1.0.0022-amd64",
+      "sourceRelease": "metapp-gateway-0.1.0.0021-amd64",
+      "updateManifestVersion": 2,
+      "startupInvitationInLogs": true,
+      "identityPreserved": true,
+      "matrixCommands": false,
+      "officeReadableAfterRestart": true,
+      "updateWithoutImageReplacement": true
+    },
+    "privateDeployment": "Public ZIP password empty; private local ZIP contains the existing Matrix settings/password; image CRC/size unchanged; Compose validates.",
+    "actualArchiveSources": {
+      "filesComparedByteForByte": 59,
+      "removedStateCatalogAndMaintenanceProviderAbsent": true
+    },
+    "linuxArtifactContracts": "Four archive/bootstrap/v2 admission/tamper/path checks passed; two activation policy checks rerun separately after correcting the external copied test import path."
+  },
+  "linuxBoundary": "Actual linux/amd64 shipping image, UID 1000, no capabilities, no external network, SDK/Rust, disk, Host and Gateway. Raw Matrix HTTP and local signed HTTPS publisher only; synthetic next release uses the same shipping program archive and independent test signatures. Matrix update preparation invoked through the real local supervisor API, not a recorded Agent prepare tool call.",
+  "retainedFailures": [
+    "First run business tests lacked the root Gateway build; built and rerun.",
+    "Mac artifact/activation tests hit original 5-second limits; no timeout was widened.",
+    "Initial empty invitation project state wait failed; identical isolated rerun passed.",
+    "Initial desktop update latency was 5346ms excluding ACP work; isolated original-budget rerun passed.",
+    "First Linux session test omitted Compose METAPP_ACP_AGENT=kimi and used default Codex; actual Compose selection passes.",
+    "First packaging test command imported from monorepo root without a root SDK dependency; public package import from Office host passes."
+  ],
+  "notExecuted": [
+    "User NAS",
+    "live user Matrix service",
+    "real browser",
+    "Android/APK",
+    "real external AI/model account"
+  ],
+  "androidRelease": "No new APK; existing Android source remains independently pinned.",
+  "deployment": "Fresh independent data/files with existing Matrix. Old v1 installation folders retained, no v1 reader/migration, no user data changed."
+}

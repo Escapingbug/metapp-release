@@ -1,0 +1,21 @@
+services:
+  kimi_login:
+    image: metapp/ugreen-workstation:0.1.0-21-amd64
+    pull_policy: never
+    user: 1000:1000
+    restart: no
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      METAPP_HOME: /data/workstation
+      METAPP_GATEWAY_INSTALL_ROOT: /data/gateway-runtime
+    volumes:
+      - ../data:/data
+    command:
+      - node
+      - /opt/metapp/cli.mjs
+      - kimi-login
+      - --region
+      - mainland-cn
