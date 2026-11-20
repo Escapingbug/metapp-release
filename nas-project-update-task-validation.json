@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "classification": "Implementation integration: actual Compose/second container/shared volume/installed SDK/supervisor/Gateway/Host/Rust/disk. Raw Matrix HTTPS/publisher fixtures and deterministic Office sanitizer. No user NAS/browser/SSH/Agent or new update owner.",
+  "shippingComposeSha256": "87ae54929cb34f880efa2980ba19e0e6d6360262069336ed95d60843370a0df4",
+  "actions": [
+    {
+      "action": "status",
+      "exitCode": 0,
+      "sharesActualGatewayVolume": true,
+      "offlineUnixSocketOnly": true
+    },
+    {
+      "action": "prepare",
+      "exitCode": 0,
+      "sharesActualGatewayVolume": true,
+      "offlineUnixSocketOnly": true
+    },
+    {
+      "action": "install",
+      "exitCode": 1,
+      "sharesActualGatewayVolume": true,
+      "offlineUnixSocketOnly": true
+    },
+    {
+      "action": "install-forward-only",
+      "exitCode": 0,
+      "sharesActualGatewayVolume": true,
+      "offlineUnixSocketOnly": true
+    }
+  ],
+  "upgrade": {
+    "passed": true,
+    "scope": "Linux container implementation integration; raw Matrix/publisher boundaries",
+    "directory": "/tmp/metapp-container-update-sIl4Vq",
+    "buildId": "metapp-gateway-0.1.0.0020-amd64",
+    "sourceRelease": "metapp-gateway-0.1.0.0016-amd64",
+    "forwardOnlyConfirmed": true,
+    "identityPreserved": true,
+    "matrixCommands": false,
+    "officeReadableAfterRestart": true,
+    "updateWithoutImageReplacement": true
+  }
+}

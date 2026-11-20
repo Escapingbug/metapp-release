@@ -1,0 +1,46 @@
+# Add metapp_update alongside workstation under the EXISTING services mapping.
+# Match image to workstation's locally installed image; keep restart: "no".
+# status is read-only. Change only METAPP_UPDATE_ACTION for each explicit step:
+# status -> prepare -> install (or install-forward-only when status says so).
+# Inspect metapp_update's logs. Remove this service after the update completes.
+services:
+  metapp_update:
+    image: metapp/ugreen-workstation:0.1.0-16-amd64
+    user: "1000:1000"
+    restart: "no"
+    depends_on:
+      - workstation
+    volumes_from:
+      - workstation
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      METAPP_UPDATE_ACTION: status
+    command:
+      - node
+      - --input-type=module
+      - -e
+      - |
+        import {realpath} from 'node:fs/promises';
+        import {join,resolve,sep} from 'node:path';
+        import {pathToFileURL} from 'node:url';
+        try {
+          const action=process.env.METAPP_UPDATE_ACTION??'status';
+          const target='metapp-gateway-0.1.0.0020-amd64';
+          if(!['status','prepare','install','install-forward-only'].includes(action))throw new Error('无效操作：'+action);
+          const install=resolve(process.env.METAPP_GATEWAY_INSTALL_ROOT??'/data/gateway-runtime');
+          const program=await realpath(join(install,'current'));
+          if(!program.startsWith(join(install,'releases')+sep))throw new Error('无效的已安装程序路径');
+          const {GatewayUpdateSupervisorClient}=await import(pathToFileURL(join(program,'node_modules/@malink/sdk/dist/gateway.js')).href);
+          const owner=new GatewayUpdateSupervisorClient(join(install,'update.sock'));
+          console.log('请求本机更新服务：'+action+'；目标：'+target);
+          const result=action==='status'?await owner.status():action==='prepare'?await owner.stage(target):await owner.scheduleApply(target,action==='install-forward-only');
+          console.log(JSON.stringify(result,null,2));
+          if(action==='prepare'&&!['staged','committed'].includes(result.phase))throw new Error('尚未准备完成，请保留上面的状态');
+          console.log('本次请求已返回；是否安装完成请以 committed 和 currentBuildId 为准。');
+        } catch(error) {
+          console.error(JSON.stringify({error:error instanceof Error?error.message:String(error),code:error?.code??error?.commandCode??null,retryable:error?.retryable??null},null,2));
+          process.exitCode=1;
+        }

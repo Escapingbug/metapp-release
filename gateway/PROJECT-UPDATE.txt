@@ -1,0 +1,67 @@
+远程 NAS：不用容器终端或 SSH 的 Metapp 更新任务
+
+第一步只读取状态。
+
+1. 绿联 Docker → 项目 → Metapp 项目 → 编辑配置。
+2. 保留所有原配置。在已有 services: 内，把下面 metapp_update: 段与 workstation: 放在同一缩进层级。不要新增第二个 services:，不要替换整个项目。
+3. image 的值复制原 workstation 的 image；下面是初装包的默认镜像名。它使用 NAS 已经导入的镜像，不需要新镜像。
+4. 保存并应用项目。进入容器 metapp_update 的日志，查看 phase、currentBuildId 等状态。任务运行完显示“已停止/退出码0”是正常完成。
+5. 先反馈日志；默认 status 不准备、不安装，不改变原 workstation 启动命令、账号和数据目录。
+
+--- 从下一行开始复制，到最后一行结束 ---
+  metapp_update:
+    image: metapp/ugreen-workstation:0.1.0-16-amd64
+    user: "1000:1000"
+    restart: "no"
+    depends_on:
+      - workstation
+    volumes_from:
+      - workstation
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      METAPP_UPDATE_ACTION: status
+    command:
+      - node
+      - --input-type=module
+      - -e
+      - |
+        import {realpath} from 'node:fs/promises';
+        import {join,resolve,sep} from 'node:path';
+        import {pathToFileURL} from 'node:url';
+        try {
+          const action=process.env.METAPP_UPDATE_ACTION??'status';
+          const target='metapp-gateway-0.1.0.0020-amd64';
+          if(!['status','prepare','install','install-forward-only'].includes(action))throw new Error('无效操作：'+action);
+          const install=resolve(process.env.METAPP_GATEWAY_INSTALL_ROOT??'/data/gateway-runtime');
+          const program=await realpath(join(install,'current'));
+          if(!program.startsWith(join(install,'releases')+sep))throw new Error('无效的已安装程序路径');
+          const {GatewayUpdateSupervisorClient}=await import(pathToFileURL(join(program,'node_modules/@malink/sdk/dist/gateway.js')).href);
+          const owner=new GatewayUpdateSupervisorClient(join(install,'update.sock'));
+          console.log('请求本机更新服务：'+action+'；目标：'+target);
+          const result=action==='status'?await owner.status():action==='prepare'?await owner.stage(target):await owner.scheduleApply(target,action==='install-forward-only');
+          console.log(JSON.stringify(result,null,2));
+          if(action==='prepare'&&!['staged','committed'].includes(result.phase))throw new Error('尚未准备完成，请保留上面的状态');
+          console.log('本次请求已返回；是否安装完成请以 committed 和 currentBuildId 为准。');
+        } catch(error) {
+          console.error(JSON.stringify({error:error instanceof Error?error.message:String(error),code:error?.code??error?.commandCode??null,retryable:error?.retryable??null},null,2));
+          process.exitCode=1;
+        }
+
+--- 配置片段结束 ---
+
+后续每步只改一个字段 METAPP_UPDATE_ACTION，再保存应用项目：
+- status：查看当前原更新服务状态；先执行它。
+- prepare：请求验签、下载、封存固定目标 metapp-gateway-0.1.0.0020-amd64；不会安装。只有 phase=staged 才能继续。
+- install：正常安装请求。原更新服务如要求 forward-only 确认，会拒绝此请求并保留原程序。
+- install-forward-only：仅当准备后的 activationMode=forward-only，且你已保留 data/files 备份并明确接受不自动回滚时使用。原更新服务会停止旧程序、创建并核验备份再切换。
+
+安装返回 scheduled 只是已安排，不能当作完成。短暂重启后改回 status 并应用，确认 phase=committed、currentBuildId=metapp-gateway-0.1.0.0020-amd64。
+出现 failed/repair_required、socket/路径错误时保留日志排查，不清空原状态或反复安装。
+完成后删除 metapp_update 服务片段或保留只读 status；不要保留准备/安装动作供日常项目操作重复执行。
+
+辅助容器复用原 workstation 的卷与本机 socket，由原 SDK supervisor 决定验签、封存、备份、安装和健康；不启动第二个 Gateway 或更新器，不要求 Docker socket、主机权限或对外端口。原文、账号、密钥不需要填入此片段。
+
+验证：真实 Docker Compose 两容器、原16版镜像、实际16/20程序与原SDK/Gateway/Host/Rust/磁盘，辅助容器无网络也可通过卷内Unix socket执行以上四种请求。实际完成了16→20切换、Host自更新、冷重启和资料/登录身份保留。仅Matrix HTTP、临时发布源/签名与确定性脱敏适配器是夹具；未操作用户NAS、绿联UI或真实Matrix。
