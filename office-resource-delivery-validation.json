@@ -1,0 +1,23 @@
+{
+  "sourceRevision": "22f970a872addf338bf73587ed0d8d3bdf5160d4",
+  "buildVersion": "20261127.095521-22f970a",
+  "sdkCommit": "f77aca7dc",
+  "scope": "Browser SDK/shared app only; NAS Gateway image and Matrix settings unchanged",
+  "problem": "After successful fresh pairing, Matrix 429 can outlast the single send budget. The encrypted outbox kept resources.open pending but did not schedule delivery again.",
+  "change": "Include resources.open in the existing SDK unacknowledged delivery selection; preserve original command, ciphertext and transaction ID; no resend after Matrix ACK.",
+  "validation": {
+    "beforeFixTestsFailed": 2,
+    "sdkTestsPassed": 21,
+    "clientTestsPassed": 13,
+    "sdkAndAppBuilds": "passed including declarations",
+    "productionFrontendBuild": "passed",
+    "pwaVerification": "passed",
+    "productionBundleResourceDelivery": "verified",
+    "externalBoundary": "Controlled HTTP/timers and memory SDK outbox; no actual NAS/browser success claimed"
+  },
+  "gatewayImage": "metapp/ugreen-workstation:0.1.0-21-amd64",
+  "gatewayChanged": false,
+  "matrixChanged": false,
+  "newStores": 0,
+  "newSchedulers": 0
+}

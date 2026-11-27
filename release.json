@@ -8,8 +8,8 @@
   "dockerZip": "https://github.com/Escapingbug/metapp-release/releases/download/metapp-nas-gateway-v0.1.0.0021/metapp-nas-gateway-0.1.0.0021-amd64.zip",
   "dockerZipSha256": "d6c24c8c19c5b404a9584273e3746b43aadc205845ffc134366c7c06f7499c27",
   "shape": "Static Pages frontend; NAS Gateway only; existing Matrix account; fresh independent data/files; no public Gateway ports.",
-  "frontendSourceRevision": "d2a16e1e90bfddb9fc07075db8364cfd1d146533",
-  "frontendBuildVersion": "20261127.083155-d2a16e1",
+  "frontendSourceRevision": "22f970a872addf338bf73587ed0d8d3bdf5160d4",
+  "frontendBuildVersion": "20261127.095521-22f970a",
   "browserApplicationId": "metapp",
   "gatewayProgramSha256": "570b202b4f0d77cf98fbebace1fd2e2febeb6525df1c90dadcb4a79d5d30b82c",
   "onlineUpdates": true,
@@ -17,5 +17,6 @@
   "updateChannel": "https://escapingbug.github.io/metapp-release/gateway-agent-updates/channels/stable.json",
   "malinkMainCommit": "f15a2cc1976b05d2a49cd99ce7fca1bd936c117a",
   "malinkIntegrationCommit": "7af6700b429688b22478bea4784508dd77ca40f6",
-  "freshInstallRequiredFromV1": true
+  "freshInstallRequiredFromV1": true,
+  "frontendMalinkIntegrationCommit": "f77aca7dc"
 }
