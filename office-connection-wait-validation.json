@@ -1,0 +1,17 @@
+{
+  "sourceRevision": "d2a16e1e90bfddb9fc07075db8364cfd1d146533",
+  "buildVersion": "20261127.083155-d2a16e1",
+  "scope": "Static Office connection loading presentation; Gateway image unchanged",
+  "change": "End the Office resource-open view wait after 60 seconds, allow manual retry and close late abandoned views. SDK delivery and completion remain unchanged.",
+  "validation": {
+    "focusedTestFiles": 4,
+    "focusedTestsPassed": 13,
+    "clientTypeCheck": "passed",
+    "productionBuild": "passed",
+    "pwaVerification": "passed",
+    "testMethod": "Controlled SDK promises and in-memory Vue renderer",
+    "userNas": "not exercised",
+    "liveBrowserMatrixSession": "not exercised"
+  },
+  "limitations": "This releases an unbounded loading screen. It does not restore or prove NAS Gateway responsiveness. Uploaded diagnostic contained only about 22 seconds after command publication and historical update state."
+}
